@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>requalify.ai - FAQ</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .faq-header {
+            background-color: #ffffff;
+            padding: 40px 20px;
+            border-bottom: 2px solid #e0e0e0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .faq-header img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+        .faq-header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .faq-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        .faq-item {
+            background-color: #ffffff;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .accordion-button {
+            background-color: #ecf0f1;
+            color: #34495e;
+            font-weight: 500;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #3498db;
+            color: #ffffff;
+        }
+        .accordion-body {
+            background-color: #ffffff;
+            color: #2c3e50;
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: #bdc3c7;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer a {
+            color: #bdc3c7;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="faq-header">
+            <img src="https://app.requalify.ai/assets/img/logos/requalify/requalify_dark.png" alt="requalify.ai Logo" style="max-width: 200px;">
+            <h4>FAQ</h4>
+            <p>Tire suas dúvidas sobre nossos serviços e funcionalidades.</p>
+        </div>
+        <div id="faq-list" class="accordion mt-4"></div>
+    </div>
+
+    <!-- Dados JSON Definidos em JavaScript -->
+    <script>
+        const faqData = [
+            {
+                "question": "O requalify.ai faz transcrições e análises em todas as línguas?",
+                "answer": "Sim! O requalify.ai realiza transcrições com acurácia de 95% ou mais em Português, Espanhol, Italiano, Francês e Inglês. Para idiomas adicionais, como Árabe, alcançamos 94% de precisão utilizando modelos especializados e processamento em máquinas locais. Nossas análises suportam diversos idiomas, com respostas disponíveis em Português, Espanhol, Italiano, Francês ou Inglês."
+            },
+            {
+                "question": "Posso testar o requalify.ai gratuitamente?",
+                "answer": "Claro! O requalify.ai oferece uma versão de teste gratuita para que você possa explorar todas as funcionalidades e entender como a ferramenta pode otimizar seu processo de pesquisa."
+            },
+            {
+                "question": "Quais critérios o sistema adota para sugerir categorias (tags)?",
+                "answer": "Nosso sistema analisa o título do projeto, a descrição e o corpus textual fornecido. Utilizamos técnicas de grounding para identificar temas principais, considerando repetições e a importância no contexto do discurso. A qualidade do material textual impacta diretamente nos resultados das categorias sugeridas."
+            },
+            {
+                "question": "O requalify.ai pode ser considerado um \"co-autor\" nas análises?",
+                "answer": "Não. O requalify.ai gera insights iniciais que se tornam categorias analíticas relevantes através da interação com o pesquisador. Ele é citado como uma ferramenta de transcrição e apoio à codificação, seguindo as recomendações editoriais de revistas científicas."
+            },
+            {
+                "question": "Qual é a técnica utilizada para as análises do requalify.ai?",
+                "answer": "Utilizamos princípios de análise semântica latente, representando documentos e palavras em espaços vetoriais multidimensionais com embeddings. Este processo inclui modelos do tipo transformers e fine-tuning para atender desafios específicos de pesquisa qualitativa e idiomática."
+            },
+            {
+                "question": "O processamento dos dados é realizado em servidores no Brasil?",
+                "answer": "Sim. Todos os dados são processados em servidores localizados no Brasil para garantir conformidade com a LGPD. Para usuários na Europa, utilizamos servidores localizados no continente europeu."
+            },
+            {
+                "question": "Os dados inseridos na plataforma são utilizados para treinamento de modelos?",
+                "answer": "Não. Garantimos que nenhum dado inserido na plataforma seja utilizado para o treinamento dos modelos, assegurando a confidencialidade e segurança das informações dos nossos usuários."
+            },
+            {
+                "question": "Quem pode acessar uma conta premium no requalify.ai?",
+                "answer": "As contas premium são ideais para grupos de pesquisa, permitindo acesso simultâneo com uma única conta. Além disso, é possível compartilhar créditos avulsos com outras contas conforme a necessidade."
+            },
+            {
+                "question": "Posso ampliar o limite de horas de transcrição?",
+                "answer": "Sim! Você pode adquirir créditos extras a qualquer momento. O custo da hora de transcrição inicia em aproximadamente R$18,50, e os créditos de IA a partir de R$1,50, dependendo da quantidade adquirida."
+            },
+            {
+                "question": "O requalify.ai pode ser usado para análise estrutural e temática de narrativas?",
+                "answer": "Sim. O requalify.ai é flexível e pode ser ajustado para diferentes frameworks analíticos, permitindo seu uso em análises narrativas. Aproveite para testar essa funcionalidade utilizando a conta gratuita."
+            },
+            {
+                "question": "Os artigos sugeridos pela plataforma são apenas da SciELO?",
+                "answer": "Não. Os artigos sugeridos provêm de diversas bases agregadas pelo Semantic Scholar, incluindo a SciELO, ampliando o alcance e a relevância das referências fornecidas."
+            },
+            {
+                "question": "Vocês têm exemplos de submissão bem-sucedida usando o requalify.ai?",
+                "answer": "Sim! Um exemplo é um artigo publicado em uma revista Q1 (SJR) com fator de impacto de 2.1 nos últimos cinco anos: [Leia o artigo](https://www.tandfonline.com/doi/full/10.1080/17445647.2024.2395916#abstract)."
+            }
+        ];
+    </script>
+
+    <!-- Script para carregar e renderizar o FAQ -->
+    <script>
+        // Função para carregar os dados JSON definidos
+        const loadFAQData = () => {
+            try {
+                renderFAQ(faqData);
+            } catch (error) {
+                console.error('Erro ao carregar FAQ:', error);
+                document.getElementById('faq-list').innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                        Não foi possível carregar as perguntas frequentes.
+                    </div>
+                `;
+            }
+        };
+
+        // Função para gerar a estrutura do FAQ
+        const renderFAQ = (data) => {
+            const faqList = document.getElementById('faq-list');
+            faqList.innerHTML = ''; // Limpa o conteúdo existente
+            data.forEach((item, index) => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'faq-item accordion-item';
+                faqItem.innerHTML = `
+                    <h2 class="accordion-header" id="heading${index}">
+                        <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="${index === 0 ? 'true' : 'false'}" aria-controls="collapse${index}">
+                            ${item.question}
+                        </button>
+                    </h2>
+                    <div id="collapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" aria-labelledby="heading${index}" data-bs-parent="#faq-list">
+                        <div class="accordion-body">
+                            ${item.answer}
+                        </div>
+                    </div>
+                `;
+                faqList.appendChild(faqItem);
+            });
+        };
+
+        // Carrega e renderiza o FAQ ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFAQData();
+        });
+    </script>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+        const renderFooter = () => {
+            const footerElement = document.getElementById('footer');
+            footerElement.innerHTML = `
+                <div class="footer">
+                    <div class="container">
+                        <p>&copy; ${new Date().getFullYear()} requalify.ai. Todos os direitos reservados.</p>
+                        <p>
+                            <a href="/privacy-policy">Política de Privacidade</a> | 
+                            <a href="/terms-of-service">Termos de Serviço</a>
+                        </p>
+                    </div>
+                </div>
+            `;
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFooter();
+        });
+    </script>
+
+    <!-- Bootstrap JS Bundle (inclui Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
